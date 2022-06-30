@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 
 mongoose
@@ -56,4 +57,18 @@ async function getCourses() {
 	console.log(courses);
 }
 
-getCourses();
+async function updateCourse(id) {
+	const result = await Course.updateOne(
+		{ name: 'ASP.NET MVC Course' },
+		{
+			$set: {
+				author: 'Shawn',
+				isPublished: false,
+			},
+		}
+	);
+
+	console.log(result);
+}
+
+updateCourse('5a68fde3f09ad7646ddec17e');
